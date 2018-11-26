@@ -22,7 +22,7 @@ $(document).ready(function () {
                 var numTrkpts = 0;
                 var maxHR = 0;
                 var minHR = 0;
-                var minElv =0;
+                var minElv = 0;
                 var maxElv = 0;
                 var meanElv = 0;
                 var times = [];
@@ -37,7 +37,7 @@ $(document).ready(function () {
                     times.push($(this).find('time').text());
                     lats.push($(this).attr('lat'));
                     lons.push($(this).attr('lon'));
-                    
+
 
                     var hr = $(this).find('ns3\\:hr').text();
                     heartrates.push(parseInt(hr));
@@ -66,7 +66,7 @@ $(document).ready(function () {
                     numTrkpts++;
                 });
 
-                
+
                 //Pair coordinates
                 var routeCoords = []
                 for (i = 0; i < lats.length; i++) {
@@ -78,24 +78,27 @@ $(document).ready(function () {
                 var labels = [];
                 var totalHR = 0;
                 var meanHR = 0;
-                for (i=0; i < heartrates.length; i++){
+                for (i = 0; i < heartrates.length; i++) {
                     totalHR = totalHR + parseInt(heartrates[i]);
                     labels.push(i);
                 }
 
                 var meanElv = 0;
                 var totalElv = 0;
-                for (i=0; i < elevations.length; i++){
+                for (i = 0; i < elevations.length; i++) {
                     totalElv = totalElv + parseInt(elevations[i]);
                 }
 
                 console.log(elevations);
 
-                meanHR = totalHR/heartrates.length;
-                meanElv = totalElv/elevations.length;
+                meanHR = totalHR / heartrates.length;
+                meanElv = totalElv / elevations.length;
 
-                
 
+                L.marker(routeCoords[0]).addTo(map).bindPopup('Start').openPopup();
+                var last = routeCoords.length;
+                var lastc = last - 1;
+                L.marker(routeCoords[lastc]).addTo(map).bindPopup('Finish').openPopup();
                 var route = L.polyline(routeCoords, { color: 'red' }).addTo(map);
                 map.fitBounds(route.getBounds());
                 map.setView(routeCoords[0]);
@@ -115,7 +118,7 @@ function parseXML(xml) {
     return coords;
 }
 
-function plotElevations(elvs, min, max, mean, labels){
+function plotElevations(elvs, min, max, mean, labels) {
     //PLOT GRAPH
     console.log(elvs);
     console.log(labels.length);
@@ -129,23 +132,23 @@ function plotElevations(elvs, min, max, mean, labels){
             datasets: [{
                 label: "elevations",
                 data: elvs,
-            }]  
+            }]
         },
         options: {
             elements: {
-                point:{
+                point: {
                     radius: 0
                 }
             },
             scales: {
                 xAxes: [{
-                        display: false //this will remove only the label
+                    display: false //this will remove only the label
                 }],
                 yAxes: [{
                     scaleLabel: {
                         display: true,
                         labelString: 'Route Elevation'
-                      }
+                    }
                 }]
             }
 
