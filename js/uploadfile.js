@@ -40,7 +40,7 @@ $(document).ready(function () {
                     
 
                     var hr = $(this).find('ns3\\:hr').text();
-                    heartrates.push(hr);
+                    heartrates.push(parseInt(hr));
 
                     var elv = $(this).find('ele').text();
                     elevations.push(parseInt(elv));
@@ -102,6 +102,8 @@ $(document).ready(function () {
 
                 heartRates(heartrates, minHR, maxHR, meanHR, labels);
                 plotElevations(elevations, minElv, maxElv, meanElv, labels);
+
+                $("#data").show();
             },
         });
     });
@@ -115,10 +117,12 @@ function parseXML(xml) {
 
 function plotElevations(elvs, min, max, mean, labels){
     //PLOT GRAPH
+    console.log(elvs);
+    console.log(labels.length);
 
-    var ctx = document.getElementById("elevationChart");
+    var chart = document.getElementById("elevationChart");
 
-    var myChart = new Chart(ctx, {
+    var myChart = new Chart(chart, {
         type: 'bar',
         data: {
             labels: labels,
@@ -147,13 +151,11 @@ function plotElevations(elvs, min, max, mean, labels){
 
         }
     });
+
     //END GRAPH
     document.getElementById("lowestElv").innerHTML = min;
     document.getElementById("highestElv").innerHTML = max;
     document.getElementById("meanElv").innerHTML = mean;
-
-
-    
 }
 
 function heartRates(rates, min, max, mean, labels) {

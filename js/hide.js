@@ -1,10 +1,5 @@
 $(document).ready(function(){
-
-    $("#viewGraph").click(function(){
-        $("#heartrate").show(1000);
-        $("#elevations").show(1000);
-
-
-    });
-
+        $("#upload").hover(function () {
+            $(this).toggleClass("fa-folder-open");
+        });
 });

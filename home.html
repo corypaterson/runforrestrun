@@ -14,9 +14,11 @@
         crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
         crossorigin=""></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
-    <link rel="stylesheet" href="css/css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 
 <body>
@@ -33,11 +35,14 @@
     <!--ACTION BUTTONS-->
     <div class="container">
         <div class="row">
-            <label class="btn-custom submit center-block"><input type="file" id="fileinput"></label>
-
-            <script src="js/uploadfile.js"></script>
-            <div class="uplaoded">
-                <p id="filename">Uploaded File</p>
+            <div class="col-md-12 center-block">
+                <label class="">
+                    <i class="far fa-folder fa-3x" id="upload"><input type="file" id="fileinput" style="display:none"></i>
+                </label>
+                <script src="js/uploadfile.js"></script>
+                <div class="uploaded text-center">
+                    <p id="filename" class="title"></p>
+                </div>
             </div>
         </div>
     </div>
@@ -50,40 +55,32 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 center-block">
-                <p>Average Heart Rate:</p>
-                <p id="meanHR"></p>
-            </div>
-            <div class="col-md-3 center-block">
-                <p>Lowest Heart Rate:</p>
-                <p id="lowestHR"></p>
-            </div>
-            <div class="col-md-3 center-block">
-                <p>Highest Heart Rate:</p>
-                <p id="highestHR"></p>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 center-block">
-                <p>Average Elevation:</p>
-                <p id="meanElv"></p>
-            </div>
-            <div class="col-md-3 center-block">
-                <p>Lowest Elevation:</p>
-                <p id="lowestElv"></p>
-            </div>
-            <div class="col-md-3 center-block">
-                <p>Highest Elevation:</p>
-                <p id="highestElv"></p>
+    <div id="data" hidden>
+        <div class="container" id="icons">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <i class="far fa-heart fa-5x data-label" style="margin-top: 30px"></i>
+                    <p class="text-center"><b>Average:</b></p>
+                    <p class="text-center" id="meanHR"></p>
+                    <p class="text-center"><b>Lowest:</b></p>
+                    <p class="text-center" id="lowestHR"></p>
+                    <p class="text-center"><b>Highest:</b></p>
+                    <p class="text-center" id="highestHR"></p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <i class="far fa-arrow-alt-circle-up fa-5x data-label" style="margin-top: 30px"></i>
+                    <p class="text-center"><b>Average:</b></p>
+                    <p class="text-center" id="meanElv"></p>
+                    <p class="text-center"><b>Lowest:</b></p>
+                    <p class="text-center" id="lowestElv"></p>
+                    <p class="text-center"><b>Highest:</b></p>
+                    <p class="text-center" id="highestElv"></p>
+                </div>
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="row" id="graphPannel">
+        <div class="row">
             <div class="col-md-6" id="elevations">
                 <canvas id="elevationChart" width="400" height="200"></canvas>
                 <!--<script src="js/elevations.js"></script>-->
