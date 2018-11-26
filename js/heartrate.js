@@ -6,41 +6,13 @@ $(document).ready(function () {
 
             var heartrates = XML(this);
             var ticks = getTicks(heartrates);
+            var mean = 0;
 
-            //PLOT GRAPH
-
-            var hrChart = document.getElementById("heartrateChart");
-
-                var newChart = new Chart(hrChart, {
-                    type: 'line',
-                    data: {
-                        labels: ticks,
-                        datasets: [{
-                            label: "heart rate",
-                            data: heartrates,
-                        }]  
-                    },
-                    options: {
-                        elements: {
-                            point:{
-                                radius: 0
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                    display: false //this will remove only the label
-                            }],
-                            yAxes: [{
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Route Elevation'
-                                  }
-                            }]
-                        }
-
-                    }
-                });
-            //END GRAPH
+            //Display Average
+            for (i = 0; i < heartrates.length; i++){
+                mean += heartrates[i];
+            }
+            document.getElementById("meanHR").innerHTML = mean;
             
         }
 
@@ -52,8 +24,8 @@ $(document).ready(function () {
 
 function XML(xml) {
     doc = xml.responseXML;
-    var elvs = heartrates(doc);
-    return elvs;
+    var hrs = heartrates(doc);
+    return hrs;
 }
 
 function heartrates(xmlDoc) {
@@ -68,6 +40,7 @@ function heartrates(xmlDoc) {
     return hrs;
 
 }
+
 function getTicks(heartRates){
     
     var labels = [];

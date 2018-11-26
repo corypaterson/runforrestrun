@@ -20,27 +20,24 @@
 </head>
 
 <body>
-    <script src="hide.js"></script>
-    <!-- <script src="readXML.js" filepassed="activity_1939704174.gpx"></script>-->
+    <script src="js/hide.js"></script>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" id="topSpacer" style="margin-bottom: 200px">
-            </div>
+    <!--HOME LOGO-->
+    <div class="row">
+        <div class="col-md-12">
+            <img class="center-block" id="homelogo" src="media/logo.png" width="25%" height="25%">
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <img class="center-block" id="homelogo" src="media/logo.png" width="50%" height="50%">
-            </div>
-        </div>
     </div>
+
+    <!--ACTION BUTTONS-->
     <div class="container">
         <div class="row">
-            <div class="col-md-12 centre-block text-center">
-                <p>Please upload a file to view data.</p>
-                <button class="btn-custom submit center-block" type="button" id="hide" onclick="createMap()">Upload File</button>
+            <label class="btn-custom submit center-block"><input type="file" id="fileinput"></label>
+
+            <script src="js/uploadfile.js"></script>
+            <div class="uplaoded">
+                <p id="filename">Uploaded File</p>
             </div>
         </div>
     </div>
@@ -48,39 +45,55 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="mapid" style="margin-top: 50px" width="100%" height="50%">
-                <script type="text/javascript" id="mapcall" src="maps.js" ></script>
+                    <!--<script type="text/javascript" id="mapcall" src="js/maps.js"></script>-->
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6" id="elevations" hidden>
-                <canvas id="elevationChart" width="200" height="100" ></canvas>
-                <script src="elevations.js"></script>
+            <div class="col-md-3 center-block">
+                <p>Average Heart Rate:</p>
+                <p id="meanHR"></p>
             </div>
-            <div class="col-md-6" id="heartrate" hidden>
-                <canvas id="heartrateChart" width="400" height="200" ></canvas>
-                <script src="heartrate.js"></script>
+            <div class="col-md-3 center-block">
+                <p>Lowest Heart Rate:</p>
+                <p id="lowestHR"></p>
+            </div>
+            <div class="col-md-3 center-block">
+                <p>Highest Heart Rate:</p>
+                <p id="highestHR"></p>
             </div>
         </div>
     </div>
-    </div>
-    <!--
-<div class="container">
-    <div class="row">
-        <div class ="col-md-12">
-                <label for="avatar">Select a GPX file:</label>
-                <input type="file" value="gpxFile" id="gpxFile">
-        </div>
-    </div>
-</div>
--->
-
     <div class="container">
         <div class="row">
-
+            <div class="col-md-3 center-block">
+                <p>Average Elevation:</p>
+                <p id="meanElv"></p>
+            </div>
+            <div class="col-md-3 center-block">
+                <p>Lowest Elevation:</p>
+                <p id="lowestElv"></p>
+            </div>
+            <div class="col-md-3 center-block">
+                <p>Highest Elevation:</p>
+                <p id="highestElv"></p>
+            </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="row" id="graphPannel">
+            <div class="col-md-6" id="elevations">
+                <canvas id="elevationChart" width="400" height="200"></canvas>
+                <!--<script src="js/elevations.js"></script>-->
+            </div>
+            <div class="col-md-6" id="heartrate">
+                <canvas id="heartrateChart" width="400" height="200"></canvas>
+                <!--<script src="js/heartrate.js"></script>-->
+            </div>
+        </div>
+    </div>
     </div>
     <div class="container">
         <div class="row text-center">

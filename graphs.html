@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The HTML5 Herald</title>
+    <meta name="Tracker App" content="GPX Tracker App">
+    <meta name="2249177P" content="SitePoint">
+
+    <script src="jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <link rel="stylesheet" href="css/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="topSpacer" style="margin-bottom: 200px">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img class="center-block" id="homelogo" src="media/logo.png" width="50%" height="50%">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="elevations">
+                <canvas id="elevationChart" width="200" height="100"></canvas>
+                <script src="js/elevations.js"></script>
+            </div>
+            <div class="col-md-6" id="heartrate">
+                <canvas id="heartrateChart" width="400" height="200"></canvas>
+                <script src="js/heartrate.js"></script>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12 center-block">
+                    <a href="home.html"><button class="btn-custom submit center-block" type="button" id="hide">Home</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-3 center-block">
+                        <p>Average Heart Rate:</p>
+                        <p id="meanHR"></p>
+                    </div>
+                </div>
+            </div>
+</body>

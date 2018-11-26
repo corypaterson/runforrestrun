@@ -8,6 +8,9 @@
 
 
 /*CUSTOM CSS HERE*/
+input[type="file"] {
+  display: none;
+}
 
 #mapid{
   height: 300px;

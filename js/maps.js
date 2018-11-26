@@ -1,16 +1,17 @@
 $(document).ready(function () {
 
-    var map = drawMap();
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
             var routeCoords = parseXML(this);
+
             L.marker(routeCoords[0]).addTo(map).bindPopup('Start').openPopup();
             var last = routeCoords.length;
             var lastc = last - 1;
             L.marker(routeCoords[lastc]).addTo(map).bindPopup('Finish').openPopup();
+            
             var route = L.polyline(routeCoords, {color: 'red'}).addTo(map);
             map.fitBounds(route.getBounds());
             map.setView(routeCoords[0]);
@@ -21,6 +22,7 @@ $(document).ready(function () {
     xhttp.send();
 
 });
+
 
 function parseXML(xml)
 {
