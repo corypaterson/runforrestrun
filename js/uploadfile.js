@@ -107,6 +107,10 @@ $(document).ready(function () {
                 plotElevations(elevations, minElv, maxElv, meanElv, labels);
 
                 $("#data").show();
+                $("#info").hide();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("some error");
             },
         });
     });
