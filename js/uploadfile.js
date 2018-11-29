@@ -19,13 +19,11 @@ $(document).ready(function () {
                 });
 
                 //distance Stats]
-                var numTrkpts = 0;
                 var maxHR = 0;
                 var minHR = 0;
                 var minElv = 0;
                 var maxElv = 0;
                 var meanElv = 0;
-                var times = [];
                 var lats = [];
                 var lons = [];
                 var heartrates = [];
@@ -34,7 +32,6 @@ $(document).ready(function () {
 
                 //Aquires the appropriate stats from each trkpt
                 $(xml).find('trkpt').each(function () {
-                    times.push($(this).find('time').text());
                     lats.push($(this).attr('lat'));
                     lons.push($(this).attr('lon'));
 
@@ -63,7 +60,6 @@ $(document).ready(function () {
                     if (parseInt(elv) > maxElv) {
                         maxElv = parseInt(elv);
                     }
-                    numTrkpts++;
                 });
 
 
@@ -80,7 +76,7 @@ $(document).ready(function () {
                 var meanHR = 0;
                 for (i = 0; i < heartrates.length; i++) {
                     totalHR = totalHR + parseInt(heartrates[i]);
-                    labels.push(i);
+                    labels.push("track point: " + i);
                 }
 
                 var meanElv = 0;
@@ -103,6 +99,11 @@ $(document).ready(function () {
                 map.fitBounds(route.getBounds());
                 map.setView(routeCoords[0]);
 
+                document.getElementById("heartrateChart").remove();
+                document.getElementById("elevationChart").remove();
+
+                document.getElementById("heartrate-div").innerHTML = '<canvas id="heartrateChart" width="400" height="200"></canvas>';
+                document.getElementById("elevation-div").innerHTML = '<canvas id="elevationChart" width="400" height="200"></canvas>';
                 heartRates(heartrates, minHR, maxHR, meanHR, labels);
                 plotElevations(elevations, minElv, maxElv, meanElv, labels);
 
@@ -129,14 +130,15 @@ function plotElevations(elvs, min, max, mean, labels) {
 
     var chart = document.getElementById("elevationChart");
 
-    var myChart = new Chart(chart, {
-        type: 'bar',
+    var eleChart = new Chart(chart, {
+        type: 'line',
         data: {
             labels: labels,
             datasets: [{
                 label: "elevations",
                 data: elvs,
-            }]
+            },
+            ]
         },
         options: {
             elements: {
@@ -158,7 +160,6 @@ function plotElevations(elvs, min, max, mean, labels) {
 
         }
     });
-
     //END GRAPH
     document.getElementById("lowestElv").innerHTML = min;
     document.getElementById("highestElv").innerHTML = max;
@@ -169,15 +170,18 @@ function heartRates(rates, min, max, mean, labels) {
     //PLOT GRAPH
 
     var hrChart = document.getElementById("heartrateChart");
-
-    var newChart = new Chart(hrChart, {
+    
+    var hrPlot = new Chart(hrChart, {
         type: 'line',
         data: {
             labels: labels,
             datasets: [{
                 label: "heart rate",
                 data: rates,
-            }]
+                fill: false,
+                borderColor: "#5ebebc",
+                borderWidth: 1,
+            }],
         },
         options: {
             elements: {
