@@ -110,7 +110,7 @@ $(document).ready(function () {
                 $("#info").hide();
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("some error");
+                alert("Error: Incorrect File type");
             },
         });
     });
